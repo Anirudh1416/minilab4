@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": -123.9,
+      "left": -211.45,
+      "rotate": -90,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -109.4,
+      "left": -37.4,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 73.6,
+      "left": -340,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -92, "left": 155.82, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 108.8,
+      "left": 58.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -199.2,
+      "left": -123,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 207.8,
+      "left": -28.8,
+      "rotate": 90,
+      "attrs": { "color": "green", "bounce": "0" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 29.56, "left": -451.2, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 172.8, "left": -442.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -133.64, "left": 288, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 268.8, "left": 143.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "vcc1:VCC", "lcd1:VCC", "red", [ "v76.8" ] ],
+    [ "lcd1:GND", "gnd1:GND", "black", [ "h-96" ] ],
+    [ "vcc2:VCC", "pir1:VCC", "red", [ "v134.4", "h-105.6", "v9.6" ] ],
+    [ "servo1:V+", "vcc2:VCC", "red", [ "v31.6", "h250.5", "v-172.8" ] ],
+    [ "ldr1:VCC", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "bz1:1", "pico:GND.5", "green", [ "v0" ] ],
+    [ "bz1:2", "pico:GP16", "green", [ "v38.4", "h9.2" ] ],
+    [ "servo1:GND", "gnd2:GND", "black", [ "v175.6", "h0.8", "v9.6" ] ],
+    [ "ldr1:GND", "gnd2:GND", "black", [ "h19.2", "v124.4" ] ],
+    [ "btn1:1.r", "gnd2:GND", "black", [ "v0" ] ],
+    [ "pico:GP9", "btn1:2.r", "green", [ "v48", "h124.8", "v230.4", "h28.8" ] ],
+    [ "servo1:PWM", "pico:GP10", "green", [ "v12.4", "h-191" ] ],
+    [ "pir1:GND", "gnd2:GND", "black", [ "v9.6", "h105.34", "v259.2" ] ],
+    [
+      "pir1:OUT",
+      "pico:GP11",
+      "green",
+      [ "v48", "h-0.14", "v28.8", "h-211.2", "v-48", "h-115.2" ]
+    ],
+    [ "lcd1:SDA", "pico:GP0", "green", [ "h-38.4", "v-86.2", "h115.2" ] ],
+    [ "lcd1:SCL", "pico:GP1", "green", [ "h-28.8", "v-76.5", "h115.2" ] ],
+    [ "ldr1:AO", "pico:GP12", "green", [ "h0", "v18.5", "h-220.8", "v-153.6", "h-124.8" ] ]
+  ],
+  "dependencies": {}
+}
